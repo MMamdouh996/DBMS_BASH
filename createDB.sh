@@ -1,34 +1,24 @@
 #!/usr/bin/bash
-echo "Create Database HERE @@@@@@@"
+echo -e "@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@  Create Database HERE  @@\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 #list the existing databases here
+cd ./DBs
+ls
+# read -p "Please Enter The Database Name : " DBname
 
-read -p "Please Enter The Database Name : " DBname
 while true
-    do
-
-    if [[ $DBname =~ ^[A-Za-z_] ]]; then
-        echo 1;
-        break
-        echo "test"
-
-        else
+do
+    read DBname
+    if [[ ! $DBname =~ ^[a-zA-Z] ]]; then
         echo 0
-        read -p "Please Re-Enter The Database Name Considering the naming standards : " DBname
-        
+        echo -n "Please Re-Enter The Database Name Considering the naming standards : "
+        continue
+     elif [[ -e $DBname ]]; then
+        echo 'This Database Already Exist'
+        echo -n "Please Type an Unexisted DB name : "
+        continue
+    else
+        mkdir $DBname
+        echo -e "Database "$DBname" Created Successfully\nat "$(date)
+        break
     fi
 done
-if [ -d ./DBs/$DBname ];then
-    echo "Thise Database Already Exist\n\nPlease Type a Unexisted DB name "
-else
-    echo "not found"
-fi
-if  [[ $DBname =~ ]];then
-
-
-fi
-
-
-echo $DBname ' Database created  ' $(date)
-# echo $DBname[0]
-# echo $DBname[1]
-# echo $DBname[2]
