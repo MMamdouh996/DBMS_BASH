@@ -1,2 +1,5 @@
 #!/usr/bin/bash
-echo "file is wokring Well"
+cd ./DBs
+echo 'This Database Already Exists'
+echo -n "Current Databases: " ;ls
+cd ..

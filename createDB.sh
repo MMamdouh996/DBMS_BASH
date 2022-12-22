@@ -1,20 +1,19 @@
 #!/usr/bin/bash
-echo -e "@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n@@  Create Database HERE  @@\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-#list the existing databases here
+echo -e "\n\t\tBash Shell Scripting Project - DBMS\n\tOpen Source Applications Development - Intake 39\n\t\t\t   Mostafa Ali\n";
+echo -e "                            \n    Creating Database    \n                            \n------------------------------------------"
 cd ./DBs
-ls
-# read -p "Please Enter The Database Name : " DBname
+echo -n "Please Insert Database Name: "
 
 while true
 do
     read DBname
     if [[ ! $DBname =~ ^[a-zA-Z] ]]; then
-        echo 0
-        echo -n "Please Re-Enter The Database Name Considering the naming standards : "
+        echo -n "Please Re-Enter The Database Name Considering the naming standards: "
         continue
      elif [[ -e $DBname ]]; then
-        echo 'This Database Already Exist'
-        echo -n "Please Type an Unexisted DB name : "
+        echo 'This Database Already Exists'
+        echo -n "Current Databases: " ;ls
+        echo -n "Please Type an Unexisted DB name: "
         continue
     else
         mkdir $DBname
@@ -22,3 +21,4 @@ do
         break
     fi
 done
+cd ..
