@@ -16,12 +16,21 @@ do
         continue
      elif [[ -e $DBname ]]; then
         echo 'This Database Already Exists'
-        echo -n "Current Databases: " ;ls
+        echo -n "Current Databases: " ;
+        
+        for line in $(ls -F | grep / |cut -d / -f1 | sort)
+            do
+            # Display the line
+            echo -n "$line   "  
+            done
+
+            echo " "
         echo -n "Please Type an Unexisted DB name: "
         continue
     else
         mkdir "$DBname"
-        echo -e "Database "$DBname" Created Successfully\nat "$(date)
+        clear
+        echo -e "\nDatabase "$DBname" Created Successfully\n\nat "$(date) "\n\n"
         break
     fi
 done
