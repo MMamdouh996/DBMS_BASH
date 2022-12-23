@@ -1,7 +1,20 @@
 #!/usr/bin/bash
 clear
 echo -e "                            \n    Creating Database    \n                            \n------------------------------------------"
-cd ./DBs
+
+# Get the directory of the current executing file
+current_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+
+# Check if the folder exists
+if [ ! -d "${current_dir}/../DBs" ]; then
+  # Create the folder if it does not exist
+  mkdir "${current_dir}/../DBs"
+fi
+# Change the current working directory to the folder
+cd "${current_dir}/../DBs"
+#cd ./DBs
+
 echo -n "Please Insert Database Name: "
 
 while true
@@ -29,7 +42,8 @@ do
         continue
     else
         mkdir "$DBname"
-        clear
+        pwd
+        #clear
         echo -e "\nDatabase "$DBname" Created Successfully\n\nat "$(date) "\n\n"
         break
     fi
