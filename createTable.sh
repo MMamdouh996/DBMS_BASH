@@ -3,9 +3,7 @@ clear
 echo -e "                            \n    Table Creating    \n                            \n------------------------------------------"
 
 echo -n "Please Insert Table Name: "
-cd DBs
-echo " "
-pwd
+
 while true
 do
     read Tabname
@@ -18,7 +16,7 @@ do
         continue
      elif [[ -e $Tabname ]]; then
         echo 'This Table Already Exists'
-        echo -n "Current Tables : " ;
+        echo -n -e "-------------------\nCurrent Tables : " ;
         
         for line in $(ls -F | grep / |cut -d / -f1 | sort)
             do
@@ -27,14 +25,14 @@ do
             done
 
             echo " "
-        echo -n "Please Type an Unexisted DB name: "
+        echo -n -e "-------------------\n-------------------\nPlease Type an Unexisted DB name: "
         continue
     else
         mkdir "$Tabname"
-        pwd
-        #clear
-        echo -e "\nDatabase "$Tabname" Created Successfully\n\nat "$(date) "\n\n"
+        clear
+        echo -e "\nTable "$Tabname" Created Successfully Inside DB "$1"\n\nat "$(date) "\n\n"
         break
     fi
 done
+
 cd ..

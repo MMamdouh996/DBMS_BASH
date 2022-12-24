@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+clear
 MMenu_list=("Create Database" "List Databases" "Connect To Databases" "Drop Database" "Exit")
 
 function top1 { 
@@ -10,18 +11,20 @@ top1
 select MMenu in "${MMenu_list[@]}"
 do
 
-    # echo "Entered Do" #just a flag
     case $MMenu in
     "Create Database")
     createDB.sh
-    
     ;;
-    "List Databases") #its database(S) not s
+    "List Databases")
     listDB.sh
+    clear
+    top1
     ;;
-    "Connect To Databases") #its database(S) not s
+    "Connect To Databases")
     connectDB.sh
-    echo "Connecting Ended Well" #removed Later
+    clear
+    top1
+    # echo "Connecting Ended Well" #removed Later
     ;;
     "Drop Database")
     dropDB.sh
@@ -32,7 +35,7 @@ do
     *)
     clear
     top1
-    echo "Wrong Input please re-insert your input from the menu "
+    echo -e "Wrong Input please re-insert your input from the menu \n"
     
     esac
     

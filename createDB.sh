@@ -1,22 +1,19 @@
 #!/usr/bin/bash
+function top1 { 
+    echo -e "                            \n    Main Menu    \n                            \n------------------------------------------"
+}
+
+top1
+
 clear
 echo -e "                            \n    Creating Database    \n                            \n------------------------------------------"
 
-# # Get the directory of the current executing file
-# current_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+if [ ! -e DBs ]; then
+    mkdir DBs
+fi
 
-
-# # Check if the folder exists
-# if [ ! -d "${current_dir}/../DBs" ]; then
-#   # Create the folder if it does not exist
-#   mkdir "${current_dir}/../DBs"
-# fi
-# # Change the current working directory to the folder
-# cd "${current_dir}/../DBs"
-# #cd ./DBs
-
+cd ./DBs
 echo -n "Please Insert Database Name: "
-
 while true
 do
     read DBname
@@ -28,7 +25,7 @@ do
         echo -n "Please Re-Enter The Database Name Considering the naming standards: "
         continue
      elif [[ -e $DBname ]]; then
-        echo 'This Database Already Exists'
+        echo -e '\nThis Database Already Exists\n'
         echo -n "Current Databases: " ;
         
         for line in $(ls -F | grep / |cut -d / -f1 | sort)
@@ -42,10 +39,10 @@ do
         continue
     else
         mkdir "$DBname"
-        pwd
-        #clear
-        echo -e "\nDatabase "$DBname" Created Successfully\n\nat "$(date) "\n\n"
+        clear
+        echo -e "\nDatabase "$DBname" Created Successfully\n\nat "$(date +%m/%d/%Y) "\n\n"
         break
     fi
 done
+top1
 cd ..
