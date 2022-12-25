@@ -27,7 +27,6 @@ do
     fi
 done
 
-cd $dbconn
 clear
 echo -e "                            \n    Connecting Database    \n                            \n------------------------------------------"
 echo -e "Connected to '"$dbconn"' Database Succecssfully\n"
