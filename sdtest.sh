@@ -41,5 +41,47 @@
 #     fi
 # done
 # cd ..
-
+#-----------------------------
 # read -p "Enter the Database Name: " dbname
+# cd /home/mmamdouh/bash/Bash_Project_DBMS/DBs/test1
+# table_insert=do7a
+# number_columns_of_table=$(awk -F"/" '{ print NF-1 }' meta/$table_insert.meta)
+# echo $number_columns_of_table
+# declare -a list=""
+# echo $list
+# for i in $(seq 1 $number_columns_of_table )
+# do
+#     list+=$(head -1 do7a | cut -d"|" -f$i )'|'
+#     echo $list
+#     echo $i
+# done
+# lost1=()
+# lost=("id" "name")
+
+# echo $list
+# x="2,3"
+# sed -n '1p' do7do7
+# cut -d"|" -f$x do7do7 | grep "do7aa" #|cut -d : -f1
+# echo $lost
+# echo ${lost[0]}
+# echo ${lost[1]}
+#----------------------------------------------------
+
+lost=()
+lost=("id" "age" "name")
+var=3
+wannted_output=()
+set -x
+for i in $(seq 0 $var )
+do
+    echo $i
+    xx=$(head -1 do7do7 | cut -d"|" -f$(($i+1)) )
+    if [[ ${lost[$i]} == $xx ]];then
+        wannted_output+=$(($i+1)),
+    echo $i
+# sed -n 'LINE_NUMBERp' file.txt
+    fi
+done
+echo $wannted_output
+# cut -d"|" -f1,2,3 do7do7 | grep do7a 
+set +x

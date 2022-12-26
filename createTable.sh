@@ -84,7 +84,7 @@ do
                         echo -n "you have selected wrong choice , please re-select your Datatype :"
                     fi
 
-            done
+            done #kest nehyt el satr
             
         done
             
