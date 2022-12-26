@@ -21,8 +21,7 @@ do
      elif [[ -e $table_name ]]; then
         echo 'This Table Already Exists'
         echo -n -e "-------------------\nCurrent Tables : " ;
-        
-        for line in $(ls -F | grep / |cut -d / -f1 | sort)
+        for line in $(find -maxdepth 1 -type f |cut -d / -f2) #$(ls -F | grep / |cut -d / -f2 | sort)
             do
             echo -n "$line   "  
             done

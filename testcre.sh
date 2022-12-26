@@ -42,4 +42,4 @@
 # done
 # cd ..
 
-read -p "Enter the Database Name: " dbname
+# read -p "Enter the Database Name: " dbname

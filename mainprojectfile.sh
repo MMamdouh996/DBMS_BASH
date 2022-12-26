@@ -17,7 +17,6 @@ do
     ;;
     "List Databases")
     listDB.sh
-    clear
     top1
     ;;
     "Connect To Databases")

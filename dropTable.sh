@@ -5,12 +5,12 @@ echo -e "                            \n    Table Creating    \n                 
 cd $1
 
 echo -n "Current Tables Are : "
-for line in $(ls -F | grep "*" | sort)
+for line in $(find -maxdepth 1 -type f |cut -d / -f2 | sort)
     do
-    # Display the line
     echo -n "$line   "  
     done
-    echo -e "\n------------------------------------------"
+echo -e "\n------------------------------------------"
+
 echo -n -e "\nPlease Insert Table Name to Delete : "
 
 while true

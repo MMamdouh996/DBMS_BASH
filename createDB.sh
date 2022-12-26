@@ -40,7 +40,7 @@ do
     else
         mkdir "$DBname"
         clear
-        echo -e "\nDatabase "$DBname" Created Successfully\n\nat "$(date +%m/%d/%Y) "\n\n"
+        echo -e "\nDatabase '"$DBname"' Created Successfully\n\nat "$(date +%m/%d/%Y) "\n\n"
         break
     fi
 done
