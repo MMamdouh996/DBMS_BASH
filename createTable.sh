@@ -3,6 +3,40 @@ DATA_TYPES=("Integer" "String")
 clear
 echo -e "                            \n    Table Creating    \n                            \n------------------------------------------"
 
+function check_str() {
+    str=$1
+    while [[ ! $str =~ ^[a-zA-Z_][a-zA-Z0-9]*$ ]]
+    do
+
+            read -p "Please Re-Enter The requirment Considering the naming standards: " str
+    done
+    # return $str
+    
+}
+function check_int() {
+    int_value=$1
+    while [[ ! $int_value =~ ^[1-9]+[0-9]*$ ]]
+    do
+
+            read -p "Please Re-Enter The requirment Considering the naming standards: " int_value
+    done  
+    return $int_value
+}
+function check_dt() {
+    dt_value=$1
+    while [[ ! $dt_value =~ ^[1-2]$ ]]
+    do
+            read -p "Please Re-Enter The requirment Considering the naming standards: " dt_value
+    done
+    return $dt_value
+    
+}
+
+
+
+
+
+
 cd $1
 mkdir meta 2> /dev/null
 
@@ -19,7 +53,7 @@ do
         echo -n "Please Re-Enter The Table Name Considering the naming standards: "
         continue
      elif [[ -e $table_name ]]; then
-        echo 'This Table Already Exists'
+        echo -e '\nThis Table Already Exists'
         echo -n -e "-------------------\nCurrent Tables : " ;
         for line in $(find -maxdepth 1 -type f |cut -d / -f2) #$(ls -F | grep / |cut -d / -f2 | sort)
             do
@@ -27,34 +61,44 @@ do
             done
 
             echo " "
-        echo -n -e "-------------------\n-------------------\nPlease Type an Unexisted DB name: "
+        echo -n -e "-------------------\nPlease Type an Unexisted DB name: "
         continue
     else
-        echo -n "How many Columns you need in the Table : " 
-        read column_count
-        #check if he inesrt a number or not and not equal to 0 TODO
+        echo -n "How many Columns you need in the Table [maximum 99 columns]: " 
+        
+        while true;
+        do
+            read column_count
+            if [[ ! $column_count =~ ^[1-9]+[0-9]*$ ]]; then   
+                echo -n "Please Re-Enter INTEGERS ONLY and not equal 0 : "
+                continue
+            fi
+            break
+        done
         
         for current_column in $(seq 1 $column_count);
         do
-            echo $current_column
                 if [[ $current_column == 1 && ( -e $table_name || -e $table_name.meta ) ]];then
                     rm -r $table_name $table_name.meta 2> /dev/null
                 fi
                 if [[ $current_column == 1 ]];then
                     read -p "Enter the Primary Key column name : " column_name
+                    check_str $column_name
                     else
+                    echo -e "\n"
                     read -p "Enter the column name : " column_name
+                    check_str $column_name
                 fi
             #check if name is correct TODO
 
-            echo -e "\n1) Integer\n2) String"
-            echo -e "\nSelect the Datatype of this column--- " 
             
             while true ; #selecting and inserting metadata
             do
-                read column_datatype
-                echo -e "\n1) integer\n2) String"
-                #check if he isnert 1 or 2 from the menu TODO
+                echo -e "\n1) integer\n2) String\n"
+                read -p "Select the Datatype of this column--- " column_datatype
+                #check if he insert 1 or 2 from the menu TODO
+                    # check_dt $column_datatype
+
                     if [[ $column_datatype == 1 && $current_column == 1 ]];then
                         echo -n "$column_name|" > $table_name
                         chmod +x $table_name
@@ -87,13 +131,14 @@ do
             done #kest nehyt el satr
             
         done
-            
+        # sed -i 's/.$//' $table_name
         echo " " >> $table_name
-        clear
+        clear   
         echo -e "\nTable "$table_name" Created Successfully Inside DB "$1"\n\nat "$(date) "\n\n"
-        break
+    
     fi
+    break
 done
-echo " finish creating table"
+echo "finish creating table"
 cd ..
 

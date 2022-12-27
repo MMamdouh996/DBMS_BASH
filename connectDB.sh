@@ -4,13 +4,14 @@ function top2 {
 echo -e "                            \n    Connecting Database    \n                            \n------------------------------------------"
 }
 top2
+
 echo -n "Current Databases is : "
 cd ./DBs
 
-for line in $(ls -F | grep / |cut -d / -f1 | sort)
-do
-  echo -n "$line   "  
-done
+  for line in $(ls -F | grep / |cut -d / -f1 | sort)
+  do
+    echo -n "$line   "  
+  done
 echo -e "\n-------------------------------------------------- "
 
 echo -n "Which Databases you want to use : "

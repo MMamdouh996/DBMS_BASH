@@ -1,5 +1,0 @@
-creating main menu
-creating Connect to databases Menus
-REMEMBER GOOD LOOK and FORMAT
-DON'T FORGET Coulmns datatype in creating tables and check them while updating and inserting
-ask about Primary Key in Table Creation , and use/check it for inserting into table

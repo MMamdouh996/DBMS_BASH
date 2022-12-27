@@ -34,7 +34,7 @@ do
             read -p "please insert the Value of the Primary key of your record : " pk_value
             check_input=`cut -d "|" -f1 $table_insert | grep -w $pk_value `
             echo $check_input
-            if [[ ! $check_input == "" && ! $check_input == "id" ]];then
+            if [[ ! $check_input == "" && ! $check_input == "id" ]];then #TODO
                 check=`cut -d "|" -f1 $table_insert | grep -n -w $pk_value | cut -d ":" -f1`
                 clear
                 sed -n "1p" $table_insert

@@ -5,23 +5,32 @@ echo -e "                            \n    Insert to Table    \n                
 cd $1
 
 read -p "which table you want to insert into : " table_insert
-# check if table exist or no first
+
+while [[ ! -e $table_insert ]]
+do
+        echo -e "\nThis Database Already Exists\n"
+        read -p "please re-insert an existed table : " table_insert
+        
+done
 
 number_columns=$(awk -F"/" '{ print NF-1 }' meta/$table_insert.meta)
 while true;
 do
-        echo $(head -1 do7a | cut -d"|" -f1 )
+        # echo $(head -1 $table_insert | cut -d"|" -f1 )
 
         row_value=""
         for i in $(seq 1 $number_columns)
         do
-        
-                column_name=$(head -1 do7a | cut -d"|" -f$i )
+                echo $i
+                column_name=$(head -1 $table_insert | cut -d"|" -f$i )
+                echo $column_name
                 read -p "please insert the "$column_name" : " column_value
                 #check if the column_value matches datatype the proceed to the next loop
-                if [[ ! $i == $number_columns]];then
+                # if [[ ! $i == $number_columns ]];then
                 row_value+=$column_value"|"
-                fi
+                # else
+                # row_value+=$column_value
+                # fi
                 
 
         done
@@ -31,4 +40,3 @@ do
                 break
         fi
 done
-
