@@ -3,8 +3,6 @@ function top1 {
     echo -e "                            \n    Main Menu    \n                            \n------------------------------------------"
 }
 
-top1
-
 clear
 echo -e "                            \n    Creating Database    \n                            \n------------------------------------------"
 
@@ -35,7 +33,7 @@ do
             done
 
             echo " "
-        echo -n "Please Type an Unexisted DB name: "
+        echo -n -e "\nPlease Type an Unexisted DB name: "
         continue
     else
         mkdir "$DBname"

@@ -27,6 +27,7 @@ do
     ;;
     "Drop Database")
     dropDB.sh
+    top1
     ;;
      "Exit")
     break

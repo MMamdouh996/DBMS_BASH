@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 clear
-echo -e "                            \n    Insert to Table    \n                            \n------------------------------------------"
+echo -e "                            \n    delete from Table    \n                            \n------------------------------------------"
 cd $1
 
 echo -n "Current Tables Are : "
@@ -34,9 +34,10 @@ do
             read -p "please insert the Value of the Primary key of your record : " pk_value
             check_input=`cut -d "|" -f1 $table_insert | grep -w $pk_value `
             echo $check_input
-            if [[ ! $check_input == "" ]];then
+            if [[ ! $check_input == "" && ! $check_input == "id" ]];then
                 check=`cut -d "|" -f1 $table_insert | grep -n -w $pk_value | cut -d ":" -f1`
                 clear
+                sed -n "1p" $table_insert
                 sed -n "${check}p" $table_insert
                 sed -i "${check} d" $table_insert
                 echo -e "\n\nthe above record Deleted Successfuly\n"

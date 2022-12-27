@@ -19,7 +19,9 @@ do
                 column_name=$(head -1 do7a | cut -d"|" -f$i )
                 read -p "please insert the "$column_name" : " column_value
                 #check if the column_value matches datatype the proceed to the next loop
+                if [[ ! $i == $number_columns]];then
                 row_value+=$column_value"|"
+                fi
                 
 
         done
