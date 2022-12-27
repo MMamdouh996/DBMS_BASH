@@ -30,7 +30,6 @@ select_options=("Select All" "Select a Column" "Select a Cell" "Exit")
 
 while true;
 do
-    echo "while"
     select selectt in "${select_options[@]}"
     do
     echo "select"
